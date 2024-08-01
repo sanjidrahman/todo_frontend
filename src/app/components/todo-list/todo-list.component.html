@@ -1,0 +1,70 @@
+<app-header></app-header>
+
+<div class="filter-bar">
+  <label class="file-input-label">
+    Import CSV
+    <input type="file" (change)="importCSV($event)">
+  </label>
+  <button (click)="exportCSV()">Download CSV</button>
+  <button routerLink="add">Add ToDo</button>
+  <select [(ngModel)]="statusFilter" (change)="filterTasks()">
+    <option value="all">All</option>
+    <option value="completed">Completed</option>
+    <option value="pending">Pending</option>
+  </select>
+</div>
+
+
+<div class="mat-elevation-z8 container mt-3">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="no">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="decription">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <button mat-raised-button  color="primary">View ToDo</button> -->
+        <button mat-icon-button (click)="viewTodo(element._id)" color="primary" aria-label="icon button to view todo details">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteTodo(element._id)" color="warn" aria-label="icon button for delete todo">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+<!-- <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <mat-select matNativeControl required>
+      <mat-option value="all">All</mat-option>
+      <mat-option value="pending">Pending</mat-option>
+      <mat-option value="completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field> -->

@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div class="add-todo-card">
+    <h2>Edit ToDo</h2>
+    <form *ngIf="todo">
+      <mat-form-field appearance="fill">
+        <mat-label>ToDo Name</mat-label>
+        <input matInput placeholder="Enter ToDo Name" [(ngModel)]="todo.name" name="todoName" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Enter Description" [(ngModel)]="todo.description" name="description" required></textarea>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="todo.status" name="status" required>
+          <mat-option value="pending">Pending</mat-option>
+          <mat-option value="completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div class="button-group">
+        <button mat-raised-button color="primary" (click)="saveTodo()" type="submit">Save</button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div class="view-todo-card mt-3" *ngIf="todo">
+    <h2 class="heading">ToDo Details</h2>
+
+    <div class="detail-field">
+        <mat-label>ToDo Name: </mat-label>
+        <h2>{{ todo.name }}</h2>
+    </div>
+
+    <div class="detail-field">
+        <mat-label>Description: </mat-label>
+        <h4>{{ todo.description }}</h4>
+    </div>
+
+    <div class="detail-field">
+        <mat-label>Status: </mat-label>
+        <h4>{{ todo.status }}</h4>
+    </div>
+
+    <div class="button-group">
+        <button class="mx-2" mat-raised-button color="warn" [routerLink]="['/home']">Back</button>
+        <button mat-raised-button color="primary" (click)="editTodo()">Edit</button>
+    </div>
+</div>
