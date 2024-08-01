@@ -11,7 +11,9 @@ export class AppService {
     private _http: HttpClient
   ) { }
 
-  commonUrl = 'http://localhost:3030'
+  commonUrl = 'https://todo-backend-a6j6.onrender.com'
+
+  // http://localhost:3030
 
   addToDo(data: any) {
     return this._http.post(`${this.commonUrl}/todos`, data)
